@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -30,16 +31,25 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
-
+    private String[] mountainNames = {"Matterhorn","Mont Blanc","Denali"};
+    private String[] mountainLocations = {"Alps","Alps","Alaska"};
+    private int[] mountainHeights ={4478,4808,6190};
+    private List<Mountain> lisasberg = new ArrayList<Mountain>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        for (int start=0;start<mountainNames.length;start++){
+            Mountain m = new Mountain(mountainNames[start],mountainLocations[start],mountainHeights[start]);
+            Toast.makeText(getApplicationContext(), m.Lisasfunk(), Toast.LENGTH_SHORT).show();
+            lisasberg.add(m);
+        }
+
         String[] mountains = {"K2","Mount Rainier","Aconcagua"};
         List<String> listData = new ArrayList<String>(Arrays.asList(mountains));
         ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(),R.layout.list_item_textview,
-                R.id.my_item_textview,listData);
+                R.id.my_item_textview,lisasberg);
         ListView myListView = (ListView)findViewById(R.id.my_listview);
         myListView.setAdapter(adapter);
         // adapter.add("Hilding");

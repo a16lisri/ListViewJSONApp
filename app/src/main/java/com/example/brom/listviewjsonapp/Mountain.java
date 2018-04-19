@@ -28,4 +28,24 @@ public class Mountain {
         cost=inCost;
         auxdata=inAuxdata;
     }
+    public Mountain(String inName,String inLocation,int inSize){
+        ID=-1;
+        name=inName;
+        type="unknown";
+        company="unknown";
+        location=inLocation;
+        category="unknown";
+        size=inSize;
+        cost=-1;
+        auxdata="unknown";
+    }
+    public String Lisasfunk(){
+        return name;
+
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
