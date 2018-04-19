@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
         for (int start=0;start<mountainNames.length;start++){
             Mountain m = new Mountain(mountainNames[start],mountainLocations[start],mountainHeights[start]);
-            Toast.makeText(getApplicationContext(), m.Lisasfunk(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), m.Lisasfunk(), Toast.LENGTH_LONG).show();
             lisasberg.add(m);
         }
 
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 // Construct the URL for the Internet service
-                URL url = new URL("_ENTER_THE_URL_TO_THE_PHP_SERVICE_SERVING_JSON_HERE_");
+                URL url = new URL("http://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=brom");
 
                 // Create the request to the PHP-service, and open the connection
                 urlConnection = (HttpURLConnection) url.openConnection();

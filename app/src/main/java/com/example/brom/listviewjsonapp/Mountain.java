@@ -12,36 +12,41 @@ public class Mountain {
     private String company;
     private String location;
     private String category;
-    private int size;
+    private int height;
     private int cost;
     private String auxdata;
 
     // Constructor(s)
-    public Mountain(int inID,String inName,String inType,String inCompany,String inLocation,String inCategory, int inSize,int inCost,String inAuxdata){
+    public Mountain(int inID,String inName,String inType,String inCompany,String inLocation,String inCategory, int inHeight,int inCost,String inAuxdata){
         ID=inID;
         name=inName;
         type=inType;
         company=inCompany;
         location=inLocation;
         category=inCategory;
-        size=inSize;
+        height=inHeight;
         cost=inCost;
         auxdata=inAuxdata;
     }
-    public Mountain(String inName,String inLocation,int inSize){
+    public Mountain(String inName,String inLocation,int inHeight){
         ID=-1;
         name=inName;
         type="unknown";
         company="unknown";
         location=inLocation;
         category="unknown";
-        size=inSize;
+        height=inHeight;
         cost=-1;
         auxdata="unknown";
     }
     public String Lisasfunk(){
-        return name;
-
+        String str=name;
+        str+=" ligger i ";
+        str+=location;
+        str+=" och har en höjd på ";
+        str+=Integer.toString(height);
+        str+="m.";
+        return str;
     }
 
     @Override
