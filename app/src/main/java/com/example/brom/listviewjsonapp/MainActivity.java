@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
 
         for (int start=0;start<mountainNames.length;start++){
             Mountain m = new Mountain(mountainNames[start],mountainLocations[start],mountainHeights[start]);
-            Toast.makeText(getApplicationContext(), m.Lisasfunk(), Toast.LENGTH_LONG).show();
             lisasberg.add(m);
         }
 
