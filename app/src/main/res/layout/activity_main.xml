@@ -7,9 +7,10 @@
     tools:context="com.example.brom.listviewjsonapp.MainActivity">
 
     <ListView
-        android:layout_width="368dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/my_listview">
-
+        android:layout_width="383dp"
+        android:layout_height="508dp"
+        android:id="@+id/my_listview"
+        >
     </ListView>
+
 </android.support.constraint.ConstraintLayout>
