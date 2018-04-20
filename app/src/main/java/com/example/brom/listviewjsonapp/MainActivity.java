@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private String[] mountainLocations = {"Alps","Alps","Alaska"};
     private int[] mountainHeights ={4478,4808,6190};
     private List<Mountain> lisasberg = new ArrayList<Mountain>();
+    private ArrayAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
         String[] mountains = {"K2","Mount Rainier","Aconcagua"};
         List<String> listData = new ArrayList<String>(Arrays.asList(mountains));
-        ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(),R.layout.list_item_textview,
+        adapter = new ArrayAdapter(getApplicationContext(),R.layout.list_item_textview,
                 R.id.my_item_textview,lisasberg);
         ListView myListView = (ListView)findViewById(R.id.my_listview);
         myListView.setAdapter(adapter);
@@ -142,12 +143,14 @@ public class MainActivity extends AppCompatActivity {
             Log.d("lisaslog","DataFetched"+o);
             try {
                 JSONArray allaberg = new JSONArray(o);
+                adapter.clear();
                 for (int start=0;start<allaberg.length();start++){
                     JSONObject hej = allaberg.getJSONObject(start);
                     String mountainname = hej.getString("name");
                     int mountainheight = hej.getInt("size");
                     String mountainlocation = hej.getString("location");
-
+                    Mountain m = new Mountain(mountainname,mountainlocation,mountainheight);
+                    adapter.add(m);
 
                     Log.d("lisaslog","forloopvarv "+start+mountainname);
                 }
