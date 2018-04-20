@@ -8,6 +8,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -40,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        new FetchData().execute();
+
         for (int start=0;start<mountainNames.length;start++){
             Mountain m = new Mountain(mountainNames[start],mountainLocations[start],mountainHeights[start]);
             Toast.makeText(getApplicationContext(), m.Lisasfunk(), Toast.LENGTH_LONG).show();
@@ -56,6 +62,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private class FetchData extends AsyncTask<Void,Void,String>{
+
+
+
         @Override
         protected String doInBackground(Void... params) {
             // These two variables need to be declared outside the try/catch
@@ -119,6 +128,21 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String o) {
             super.onPostExecute(o);
+            Log.d("lisaslog","DataFetched"+o);
+            try {
+                JSONArray allaberg = new JSONArray(o);
+                for (int start=0;start<allaberg.length();start++){
+                    JSONObject hej = allaberg.getJSONObject(start);
+                    String mountainname = hej.getString("name");
+                    //Mountain m = new Mountain(mountainNames[start],mountainLocations[start],mountainHeights[start]);
+                    //Toast.makeText(getApplicationContext(), m.Lisasfunk(), Toast.LENGTH_LONG).show();
+                    //lisasberg.add(m);
+                    Log.d("lisaslog","forloopvarv "+start+mountainname);
+                }
+            } catch (JSONException e) {
+                Log.e("lisaslog","E:"+e.getMessage());
+            }
+
             // This code executes after we have received our data. The String object o holds
             // the un-parsed JSON string or is null if we had an IOException during the fetch.
 
