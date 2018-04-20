@@ -4,6 +4,8 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -21,6 +23,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static android.R.attr.start;
 
 
 // Create a new class, Mountain, that can hold your JSON data
@@ -58,7 +62,15 @@ public class MainActivity extends AppCompatActivity {
                 R.id.my_item_textview,lisasberg);
         ListView myListView = (ListView)findViewById(R.id.my_listview);
         myListView.setAdapter(adapter);
-        // adapter.add("Hilding");
+
+        myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Mountain m = lisasberg.get(position);
+                Toast.makeText(getApplicationContext(), m.Lisasfunk(), Toast.LENGTH_LONG).show();
+            }
+        });
+
     }
 
     private class FetchData extends AsyncTask<Void,Void,String>{
@@ -134,9 +146,10 @@ public class MainActivity extends AppCompatActivity {
                 for (int start=0;start<allaberg.length();start++){
                     JSONObject hej = allaberg.getJSONObject(start);
                     String mountainname = hej.getString("name");
-                    //Mountain m = new Mountain(mountainNames[start],mountainLocations[start],mountainHeights[start]);
-                    //Toast.makeText(getApplicationContext(), m.Lisasfunk(), Toast.LENGTH_LONG).show();
-                    //lisasberg.add(m);
+                    int mountainheight = hej.getInt("size");
+                    String mountainlocation = hej.getString("location");
+
+
                     Log.d("lisaslog","forloopvarv "+start+mountainname);
                 }
             } catch (JSONException e) {
