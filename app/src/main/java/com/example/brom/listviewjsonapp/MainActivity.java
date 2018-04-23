@@ -169,9 +169,16 @@ public class MainActivity extends AppCompatActivity {
                 adapter.clear();
                 for (int start=0;start<allaberg.length();start++){
                     JSONObject hej = allaberg.getJSONObject(start);
+                    int mountainid = hej.getInt("ID");
                     String mountainname = hej.getString("name");
-                    int mountainheight = hej.getInt("size");
+                    String mountaintype = hej.getString("type");
+                    String mountaincompany = hej.getString("company");
                     String mountainlocation = hej.getString("location");
+                    String mountaincategory = hej.getString("category");
+                    int mountainheight = hej.getInt("size");
+                    int mountaincost = hej.getInt("cost");
+                    String mountainauxdata = hej.getString("auxdata");
+
                     Mountain m = new Mountain(mountainname,mountainlocation,mountainheight);
                     adapter.add(m);
 
