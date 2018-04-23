@@ -87,9 +87,13 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.meny_refresh:
-                adapter.clear();
                 new FetchData().execute();
                 return true;
+
+            case R.id.meny_clear:
+                adapter.clear();
+                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
