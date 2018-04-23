@@ -41,11 +41,12 @@ public class Mountain {
     }
     public String Lisasfunk(){
         String str=name;
-        str+=" ligger i ";
+        str+=" is part of the ";
         str+=location;
-        str+=" och har en höjd på ";
+        str+=" mountain range and is ";
         str+=Integer.toString(height);
-        str+="m.";
+        str+="m";
+        str+=" high.";
         return str;
     }
 
